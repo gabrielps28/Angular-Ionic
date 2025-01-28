@@ -1,51 +1,51 @@
-# WorldsAcross Frontend Test
+# Angular Ionic Application
 
-## Descripción
-Esta es una prueba técnica para evaluar tus habilidades en Angular e Ionic. El objetivo es crear una aplicación frontend que consuma una API proporcionada.
+This document provides general instructions to set up, run, and test an Angular Ionic application.
 
-## Objetivos
-- Construir una aplicación en Angular e Ionic.
-- Consumir datos desde la API mockeada proporcionada.
-- Implementar filtros dinámicos y diseño responsivo.
+---
 
-## Endpoints de la API
-Base URL: `https://test.worldsacross.com/api`
+## Prerequisites
 
+Ensure you have the following tools installed:
 
+- **Node.js**: [Download and install Node.js](https://nodejs.org/).
+- **npm or yarn**: Comes with Node.js. Use npm or install [Yarn](https://yarnpkg.com/).
+- **Angular CLI**: Install globally with:
+  ```bash
+  npm install -g @angular/cli
+  ```
+- **Ionic CLI**: Install globally with:
+  ```bash
+  npm install -g @ionic/cli
+  ```
 
-### Endpoints Disponibles
-- `GET /tutors`: Lista de tutores.
-- `GET /users`: Lista de usuarios.
-- `GET /booking`: Lista de reservas.
+---
 
-## Funcionalidades a Implementar
+## Installation
 
-### Lista de Tutores
-- Mostrar una lista de tutores obtenida del endpoint `/tutors`.
-- Implementar un filtro dinámico por `Speciality`.
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   ```
 
-### Lista de Usuarios
-- Mostrar una lista de usuarios obtenida del endpoint `/users`.
-- Agregar la funcionalidad para seleccionar un usuario y mostrar sus detalles.
+2. **Navigate to the project directory:**
+   ```bash
+   cd <project-directory>
+   ```
 
-### Reservas
-- Mostrar todas las reservas obtenidas del endpoint `/booking`.
-- Permitir filtrar reservas por `User`.
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Diseño
-- Usa componentes de Ionic para listas, inputs y botones.
-- Implementa un diseño responsivo que funcione en dispositivos móviles y desktop.
+---
 
-## Recursos
-- Documentación de [Angular](https://angular.io/docs).
-- Documentación de [Ionic](https://ionicframework.com/docs).
+## Running the Application
 
-## Extras Opcionales
-- Validaciones en formularios.
-- Agregar mensajes de error para manejo de errores al consumir la API.
-- Diseño avanzado para mejorar la experiencia del usuario.
+1. **Start the development server:**
+   ```bash
+   ionic serve
+   ```
 
-## Entrega
-1. Sube tu proyecto a un repositorio público o privado (y comparte acceso).
-2. Incluye un archivo `README.md` en tu repositorio con las instrucciones necesarias para ejecutar tu aplicación.
-3. Envía el enlace del repositorio.
+2. Open your browser and navigate to the provided URL (usually `http://localhost:8100`).
+
