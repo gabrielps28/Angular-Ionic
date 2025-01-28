@@ -13,8 +13,9 @@ import { StudentPage } from './student.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    StudentPageRoutingModule
+    StudentPageRoutingModule,
+    StudentPage
   ],
-  declarations: [StudentPage]
+  // declarations: [StudentPage]
 })
 export class StudentPageModule {}

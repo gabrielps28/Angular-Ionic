@@ -6,15 +6,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { TutorsPageRoutingModule } from './tutors-routing.module';
 
-import { TutorsPage } from './tutors.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TutorsPageRoutingModule
+    TutorsPageRoutingModule,
   ],
-  declarations: [TutorsPage]
 })
 export class TutorsPageModule {}

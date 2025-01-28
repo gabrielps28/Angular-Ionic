@@ -1,13 +1,68 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tutors</ion-title>
+  <ion-toolbar color="primary">
+
+    <ion-title class="ion-text-center">
+      <strong>Tutors</strong>
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button routerLink="/student" color="light">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon> Users
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/classes" color="light">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon> Reservations
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tutors</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-toolbar color="light">
+  <ion-item lines="none">
+    <ion-label>Filter by Specialty:</ion-label>
+    <ion-select (ionChange)="filterBySpecialty($event.detail.value)">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option *ngFor="let specialty of specialties" [value]="specialty">
+        {{ specialty }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-spinner *ngIf="isLoading" name="crescent" class="ion-align-self-center ion-margin"></ion-spinner>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <ion-card>
+    <ion-card-header color="warning">
+      <ion-card-title class="list-header">Tutors List</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let tutor of filteredTutors">
+          <ion-avatar slot="start">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar">
+          </ion-avatar>
+          <ion-label>
+            <h2 class="tutor-name">{{ tutor.first_name }} {{ tutor.last_name }}</h2>
+            <p class="specialty">{{ tutor.speciality }}</p>
+            <p><strong>Email:</strong> {{ tutor.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text *ngIf="filteredTutors.length === 0" color="danger">
+    <p>No tutors found for this specialty.</p>
+  </ion-text>
+  
 </ion-content>

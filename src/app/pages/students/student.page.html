@@ -1,13 +1,80 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>student</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      <strong>Users</strong>
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tutors" color="light">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon> Tutors
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/classes" color="light">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon> Reservations
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">student</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-spinner *ngIf="isLoading" name="crescent" class="ion-align-self-center ion-margin"></ion-spinner>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <ion-card *ngIf="!isLoading && users.length > 0">
+    <ion-card-header color="warning">
+      <ion-card-title>Users List</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let user of users" class="interactive-item" (click)="openUserDetails(user)" detail>
+          <ion-avatar slot="start">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text *ngIf="!isLoading && users.length === 0">
+    <p>No users found.</p>
+  </ion-text>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>User Details</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="primary" (click)="closeModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item *ngIf="selectedUser">
+          <ion-label><strong>Full Name:</strong></ion-label>
+          <ion-text>{{ selectedUser.first_name }} {{ selectedUser.last_name }}</ion-text>
+        </ion-item>
+        <ion-item *ngIf="selectedUser">
+          <ion-label><strong>Date of Birth:</strong></ion-label>
+          <ion-text>{{ selectedUser.date_of_birth }}</ion-text>
+        </ion-item>
+        <ion-item *ngIf="selectedUser">
+          <ion-label><strong>Address:</strong></ion-label>
+          <ion-text style="text-align: end;">{{ selectedUser.address }}</ion-text>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
 </ion-content>
