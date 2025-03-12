@@ -66,12 +66,12 @@
           <ion-text>{{ selectedUser.first_name }} {{ selectedUser.last_name }}</ion-text>
         </ion-item>
         <ion-item *ngIf="selectedUser">
-          <ion-label><strong>Date of Birth:</strong></ion-label>
-          <ion-text>{{ selectedUser.date_of_birth }}</ion-text>
+          <ion-label><strong>Email:</strong></ion-label>
+          <ion-text>{{ selectedUser.email }}</ion-text>
         </ion-item>
         <ion-item *ngIf="selectedUser">
-          <ion-label><strong>Address:</strong></ion-label>
-          <ion-text style="text-align: end;">{{ selectedUser.address }}</ion-text>
+          <ion-label><strong>Phone:</strong></ion-label>
+          <ion-text>{{ selectedUser.phone }}</ion-text>
         </ion-item>
       </ion-content>
     </ng-template>

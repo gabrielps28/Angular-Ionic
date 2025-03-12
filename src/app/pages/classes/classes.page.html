@@ -3,6 +3,7 @@
     <ion-title class="ion-text-center">
       <strong>Reservations</strong>
     </ion-title>
+
     <ion-buttons slot="start">
       <ion-button routerLink="/tutors" color="light">
         <ion-icon name="person-circle-outline" slot="start"></ion-icon> Tutors
@@ -15,7 +16,6 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-toolbar>
@@ -35,7 +35,7 @@
   <ion-spinner *ngIf="isLoading" name="crescent" class="ion-align-self-center ion-margin"></ion-spinner>
 
   <ion-text *ngIf="filteredReservations.length === 0">
-    <p>No reservations found for this student.</p>
+    <p>No reservations.</p>
   </ion-text>
 
   <ion-card *ngIf="filteredReservations && filteredReservations.length > 0">
@@ -47,10 +47,9 @@
       <ion-list>
         <ion-item *ngFor="let reservation of filteredReservations">
           <ion-label>
-            <h2>{{ reservation.student.first_name }} {{ reservation.student.last_name }}</h2>
-            <p><strong>Tutor:</strong> {{ reservation.tutor.first_name }} {{ reservation.tutor.last_name }}</p>
-            <p><strong>Date:</strong> {{ reservation.date }}</p>
-            <p><strong>Time:</strong> {{ reservation.start_time }} - {{ reservation.end_time }}</p>
+            <h2>{{ reservation.user.first_name }} {{ reservation.user.last_name }}</h2>
+            <p><strong>Staff:</strong> {{ reservation.staff.first_name }} {{ reservation.staff.last_name }}</p>
+            <p><strong>Reservation date:</strong> {{ reservation.date }}</p>
           </ion-label>
         </ion-item>
       </ion-list>

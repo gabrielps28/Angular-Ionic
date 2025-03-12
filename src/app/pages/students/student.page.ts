@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { RouterModule } from '@angular/router';
-
+import { Observable, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-student',
@@ -26,18 +26,22 @@ export class StudentPage implements OnInit {
   }
 
   // Obtener lista de usuarios
-  async loadUsers() {
+  loadUsers() {
     this.isLoading = true;
     this.errorMessage = '';
-    try {
-      const response = await this.apiService.getUsers();
-      this.users = response;
-    } catch (error) {
-      console.error('Error fetching users', error);
-      this.errorMessage = 'Failed to load users. Please try again later.';
-    } finally {
-      this.isLoading = false;
-    }
+    
+    this.apiService.getUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (error) => {
+        console.error('Error fetching users', error);
+        this.errorMessage = 'Failed to load users. Please try again later.';
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
   }
 
   selectUser(user: any) {
@@ -53,5 +57,4 @@ export class StudentPage implements OnInit {
     this.isModalOpen = false;
     this.selectedUser = null;
   }
-
 }

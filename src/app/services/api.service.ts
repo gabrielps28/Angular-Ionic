@@ -1,43 +1,39 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ApiService {
-  private baseURL = 'https://test.worldsacross.com/api';
+  private baseURL = environment.baseURL;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   // Obtener tutores
-  async getTutors() {
-    try {
-      const response = await axios.get(`${this.baseURL}/tutors`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Error fetching tutors');
-    }
+  getTutors(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseURL}/tutors`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   // Obtener usuarios
-  async getUsers() {
-    try {
-      const response = await axios.get(`${this.baseURL}/users`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Error fetching users');
-    }
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseURL}/users`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   // Obtener reservas
-  async getBookings() {
-    try {
-      const response = await axios.get(`${this.baseURL}/booking`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Error fetching bookings');
-    }
+  getBookings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseURL}/booking`).pipe(
+      catchError(this.handleError)
+    );
   }
-  
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('An error occurred:', error);
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
 }
